@@ -139,6 +139,11 @@ module "eks" {
   # Optional
   endpoint_public_access = true
 
+  # Disable KMS envelope encryption for class — avoids extra IAM permissions
+  # and ~$1/month per key. Not needed for non-production workloads.
+  create_kms_key            = false
+  cluster_encryption_config = {}
+
   # Optional: Adds the current caller identity as an administrator via cluster access entry
   enable_cluster_creator_admin_permissions = true
 
